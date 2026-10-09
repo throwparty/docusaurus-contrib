@@ -1,0 +1,48 @@
+{
+  "name": "@throwparty/docusaurus-theme",
+  "description": "throw.party Docusaurus theme: design tokens, Infima overrides, and shared components",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "git+https://github.com/throwparty/docusaurus-contrib.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": "./styles.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "styles.css"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc --pretty false && node scripts/copy-assets.mjs",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "yarn build"
+  },
+  "peerDependencies": {
+    "@docusaurus/core": "^3.0.0",
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.10.2",
+    "@docusaurus/types": "3.10.2",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "~6.0.3"
+  },
+  "engines": {
+    "node": ">=20.0"
+  },
+  "type": "module"
+}

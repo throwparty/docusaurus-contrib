@@ -1,0 +1,454 @@
+/**
+ * @throwparty/docusaurus-theme stylesheet.
+ *
+ * Design tokens mirrored from the corporate site (www/src/style.css):
+ * graph paper background, monospace type, hairline borders, flat surfaces,
+ * gold accent. Everything below maps those tokens onto Infima variables.
+ *
+ * Everything lives in the `throwparty` cascade layer so that a site's own
+ * customCss (unlayered) always wins over this theme. Requires Docusaurus
+ * `future.v4` (useCssCascadeLayers) — both handbook and agentkit enable it.
+ */
+
+@layer docusaurus.infima, docusaurus.theme-common, docusaurus.theme-classic, docusaurus.core, docusaurus.plugin-debug, docusaurus.theme-mermaid, docusaurus.theme-live-codeblock, docusaurus.theme-search-algolia.docsearch, docusaurus.theme-search-algolia, throwparty;
+
+@layer throwparty {
+  :root {
+    --tp-bg: #fbfbf9;
+    --tp-fg: #16161a;
+    --tp-muted: #5f5f66;
+    --tp-line: #e5e5df;
+    --tp-surface: #ffffff;
+    --tp-surface-alt: #f3f3ef;
+    --tp-accent: #a67c00;
+    --tp-accent-dark: #8d6900;
+    --tp-accent-darkest: #745700;
+    --tp-green: #1a7f37;
+    --tp-amber: #9a6700;
+    --tp-red: #cf222e;
+
+    --tp-font-mono:
+      ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+      monospace;
+    --tp-radius: 12px;
+    /* One graph-paper cell. All band geometry (navbar, hero, footer) is a
+     * multiple of this so band edges land on body background grid lines. */
+    --tp-grid-cell: 2.5rem;
+    /* Must stay a multiple of the grid cell so the column edges land on grid lines */
+    --tp-page-width: 75rem;
+
+    --ifm-color-gray-100: #f3f3ef;
+    --ifm-color-gray-200: #e5e5df;
+    --ifm-color-gray-300: #d4d4cd;
+    --ifm-color-gray-400: #bcbcb4;
+    --ifm-color-gray-500: #a1a19a;
+    --ifm-color-gray-600: #85857f;
+    --ifm-color-gray-700: #6b6b6f;
+    --ifm-color-gray-800: #4a4a50;
+    --ifm-color-gray-900: #16161a;
+
+    --ifm-color-content: var(--tp-fg);
+    --ifm-color-content-secondary: var(--tp-muted);
+
+    --ifm-color-primary: var(--tp-accent);
+    /* Two grid cells: the navbar top sits at the page top, so the hero below
+     * it starts on a grid line. */
+    --ifm-navbar-height: calc(var(--tp-grid-cell) * 2);
+    --ifm-color-primary-dark: #957000;
+    --ifm-color-primary-darker: var(--tp-accent-dark);
+    --ifm-color-primary-darkest: var(--tp-accent-darkest);
+    --ifm-color-primary-light: #b39026;
+    --ifm-color-primary-lighter: #c1a34d;
+    --ifm-color-primary-lightest: #d3be80;
+    --ifm-color-primary-contrast-background: #f1ecdb;
+    --ifm-color-primary-contrast-foreground: var(--tp-accent-darkest);
+
+    --ifm-color-secondary: var(--tp-line);
+    --ifm-color-secondary-dark: var(--tp-muted);
+    --ifm-color-secondary-darker: #4a4a50;
+    --ifm-color-secondary-darkest: #2a2a30;
+    --ifm-color-secondary-light: var(--tp-surface-alt);
+    --ifm-color-secondary-lighter: #f7f7f5;
+    --ifm-color-secondary-lightest: #fbfbf9;
+    --ifm-color-secondary-contrast-background: var(--tp-surface-alt);
+    --ifm-color-secondary-contrast-foreground: var(--tp-fg);
+
+    --ifm-color-success: var(--tp-green);
+    --ifm-color-success-dark: #177232;
+    --ifm-color-success-darker: #166c2f;
+    --ifm-color-success-darkest: #125927;
+    --ifm-color-success-light: #3c9255;
+    --ifm-color-success-lighter: #5fa573;
+    --ifm-color-success-lightest: #8dc09b;
+    --ifm-color-success-contrast-background: #e5efe6;
+    --ifm-color-success-contrast-foreground: #125927;
+
+    --ifm-color-info: var(--tp-accent);
+    --ifm-color-info-dark: #957000;
+    --ifm-color-info-darker: var(--tp-accent-dark);
+    --ifm-color-info-darkest: var(--tp-accent-darkest);
+    --ifm-color-info-light: #b39026;
+    --ifm-color-info-lighter: #c1a34d;
+    --ifm-color-info-lightest: #d3be80;
+    --ifm-color-info-contrast-background: #f1ecdb;
+    --ifm-color-info-contrast-foreground: var(--tp-accent-darkest);
+
+    --ifm-color-warning: var(--tp-amber);
+    --ifm-color-warning-dark: #8b5d00;
+    --ifm-color-warning-darker: #835800;
+    --ifm-color-warning-darkest: #6c4800;
+    --ifm-color-warning-light: #a97e26;
+    --ifm-color-warning-lighter: #b8954d;
+    --ifm-color-warning-lightest: #cdb380;
+    --ifm-color-warning-contrast-background: #f1ece0;
+    --ifm-color-warning-contrast-foreground: #6c4800;
+
+    --ifm-color-danger: var(--tp-red);
+    --ifm-color-danger-dark: #ba1f29;
+    --ifm-color-danger-darker: #b01d27;
+    --ifm-color-danger-darkest: #911820;
+    --ifm-color-danger-light: #d6434d;
+    --ifm-color-danger-lighter: #dd646d;
+    --ifm-color-danger-lightest: #e79197;
+    --ifm-color-danger-contrast-background: #f7e5e5;
+    --ifm-color-danger-contrast-foreground: #911820;
+
+    --ifm-background-color: var(--tp-bg);
+    --ifm-background-surface-color: var(--tp-surface);
+
+    --ifm-font-family-base: var(--tp-font-mono);
+    --ifm-font-family-monospace: var(--tp-font-mono);
+    --ifm-line-height-base: 1.6;
+    --ifm-code-font-size: 95%;
+    --ifm-code-background: var(--tp-line);
+    --ifm-code-border-radius: 4px;
+    --ifm-heading-font-weight: 700;
+
+    --ifm-link-color: var(--tp-accent-dark);
+    --ifm-link-hover-color: var(--tp-accent-darkest);
+
+    --ifm-hover-overlay: rgba(166, 124, 0, 0.08);
+    --ifm-menu-color-active: var(--tp-accent-dark);
+
+    --ifm-global-radius: var(--tp-radius);
+    --ifm-button-border-radius: 999px;
+    --ifm-card-border-radius: var(--tp-radius);
+    --ifm-badge-border-radius: 999px;
+
+    --ifm-global-shadow-lw: 0 0 0 1px var(--tp-line);
+    --ifm-global-shadow-md:
+      0 0 0 1px var(--tp-line), 0 16px 48px rgba(0, 0, 0, 0.18);
+    --ifm-global-shadow-tl:
+      0 0 0 1px var(--tp-line), 0 24px 64px rgba(0, 0, 0, 0.22);
+
+    --ifm-navbar-background-color: var(--tp-surface);
+    --ifm-navbar-shadow: 0 1px 0 var(--tp-line);
+    --ifm-navbar-link-color: var(--tp-fg);
+    --ifm-navbar-link-hover-color: var(--tp-accent-dark);
+    --ifm-navbar-link-active-color: var(--tp-accent-dark);
+    --ifm-navbar-search-input-background-color: var(--tp-surface-alt);
+
+    --ifm-toc-border-color: var(--tp-line);
+    --ifm-toc-link-color: var(--tp-muted);
+
+    --ifm-table-border-color: var(--tp-line);
+    --ifm-table-stripe-background: rgba(22, 22, 26, 0.03);
+
+    --ifm-blockquote-border-color: var(--tp-line);
+    --ifm-blockquote-color: var(--tp-muted);
+    --ifm-hr-background-color: var(--tp-line);
+
+    --ifm-footer-background-color: var(--tp-surface-alt);
+    --ifm-footer-color: var(--tp-muted);
+    --ifm-footer-link-color: var(--tp-fg);
+    --ifm-footer-link-hover-color: var(--tp-accent-dark);
+    --ifm-footer-title-color: var(--tp-accent);
+
+    --ifm-scrollbar-track-background-color: var(--tp-surface-alt);
+    --ifm-scrollbar-thumb-background-color: #d4d4cd;
+    --ifm-scrollbar-thumb-hover-background-color: #bcbcb4;
+
+    --docusaurus-highlighted-code-line-bg: rgba(166, 124, 0, 0.18);
+  }
+
+  [data-theme='dark'] {
+    --tp-bg: #0d0d0f;
+    --tp-fg: #f1f1ee;
+    --tp-muted: #9b9ba3;
+    --tp-line: #26262b;
+    --tp-surface: #131316;
+    --tp-surface-alt: #1a1a20;
+    --tp-accent: #ffd400;
+    --tp-accent-dark: #ffd400;
+    --tp-accent-darkest: #ffee80;
+    --tp-green: #3fb950;
+    --tp-amber: #d29922;
+    --tp-red: #ff7b72;
+
+    --ifm-color-gray-100: #f1f1ee;
+    --ifm-color-gray-200: #d4d4cd;
+    --ifm-color-gray-300: #9b9ba3;
+    --ifm-color-gray-400: #75757e;
+    --ifm-color-gray-500: #55555e;
+    --ifm-color-gray-600: #3f3f47;
+    --ifm-color-gray-700: #2e2e35;
+    --ifm-color-gray-800: #26262b;
+    --ifm-color-gray-900: #1a1a20;
+
+    --ifm-color-content: var(--tp-fg);
+    --ifm-color-content-secondary: var(--tp-muted);
+
+    --ifm-color-primary-dark: #e6bf00;
+    --ifm-color-primary-darker: var(--tp-accent-dark);
+    --ifm-color-primary-darkest: var(--tp-accent-darkest);
+    --ifm-color-primary-light: #ffdc26;
+    --ifm-color-primary-lighter: #ffe44d;
+    --ifm-color-primary-lightest: #ffee80;
+    --ifm-color-primary-contrast-background: #2f2929;
+    --ifm-color-primary-contrast-foreground: var(--tp-fg);
+
+    --ifm-color-secondary: #2e2e35;
+    --ifm-color-secondary-dark: #55555e;
+    --ifm-color-secondary-darker: #75757e;
+    --ifm-color-secondary-darkest: #9b9ba3;
+    --ifm-color-secondary-light: var(--tp-surface-alt);
+    --ifm-color-secondary-lighter: var(--tp-line);
+    --ifm-color-secondary-lightest: #3f3f47;
+    --ifm-color-secondary-contrast-background: var(--tp-surface-alt);
+    --ifm-color-secondary-contrast-foreground: var(--tp-fg);
+
+    --ifm-color-success-dark: #39aa48;
+    --ifm-color-success-darker: #35a344;
+    --ifm-color-success-darkest: #2b8538;
+    --ifm-color-success-light: #62c772;
+    --ifm-color-success-lighter: #86d593;
+    --ifm-color-success-lightest: #bceabd;
+    --ifm-color-success-contrast-background: #132217;
+    --ifm-color-success-contrast-foreground: var(--tp-green);
+
+    --ifm-color-info-dark: #e6bf00;
+    --ifm-color-info-darker: #d9b400;
+    --ifm-color-info-darkest: #b39400;
+    --ifm-color-info-light: #ffdc26;
+    --ifm-color-info-lighter: #ffe44d;
+    --ifm-color-info-lightest: #ffee80;
+    --ifm-color-info-contrast-background: #2f2929;
+    --ifm-color-info-contrast-foreground: var(--tp-fg);
+
+    --ifm-color-warning-dark: #bf8c20;
+    --ifm-color-warning-darker: #b5851e;
+    --ifm-color-warning-darkest: #956d18;
+    --ifm-color-warning-light: #dbb04b;
+    --ifm-color-warning-lighter: #e4c478;
+    --ifm-color-warning-lightest: #f0dcae;
+    --ifm-color-warning-contrast-background: #251e11;
+    --ifm-color-warning-contrast-foreground: var(--tp-amber);
+
+    --ifm-color-danger-dark: #e66467;
+    --ifm-color-danger-darker: #df5c5f;
+    --ifm-color-danger-darkest: #b84c4e;
+    --ifm-color-danger-light: #ff948d;
+    --ifm-color-danger-lighter: #ffaaa5;
+    --ifm-color-danger-lightest: #ffd0cd;
+    --ifm-color-danger-contrast-background: #2a1a1b;
+    --ifm-color-danger-contrast-foreground: var(--tp-red);
+
+    --ifm-hover-overlay: rgba(255, 212, 0, 0.1);
+
+    --ifm-table-stripe-background: rgba(255, 255, 255, 0.04);
+
+    --ifm-scrollbar-track-background-color: var(--tp-surface);
+    --ifm-scrollbar-thumb-background-color: #3f3f47;
+    --ifm-scrollbar-thumb-hover-background-color: #55555e;
+
+    --docusaurus-highlighted-code-line-bg: rgba(255, 212, 0, 0.14);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* The grid lives on <html>, not <body>: Docusaurus pins body to 100% of the
+   * viewport height, so a body background stops at the fold. The root box
+   * always spans the whole canvas. */
+  html {
+    background-color: var(--ifm-background-color);
+    background-image:
+      linear-gradient(to right, var(--tp-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--tp-line) 1px, transparent 1px);
+    background-position: calc(50% + 1.25rem) top;
+    background-size: var(--tp-grid-cell) var(--tp-grid-cell);
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #__docusaurus {
+    background-color: var(--tp-bg);
+    border-left: 1px solid var(--tp-line);
+    border-right: 1px solid var(--tp-line);
+    margin-inline: auto;
+    max-width: var(--tp-page-width);
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--tp-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .button {
+    color: var(--tp-fg);
+  }
+
+  .button--primary {
+    color: #141414;
+  }
+
+  .navbar__link {
+    font-size: 0.9375rem;
+  }
+
+  [class*='docSidebarContainer'] {
+    background-color: var(--tp-surface);
+  }
+
+  [class*='cardContainer'] {
+    background-color: var(--tp-surface);
+    border-color: var(--tp-line);
+    box-shadow: none;
+  }
+
+  [class*='cardContainer']:hover {
+    border-color: var(--tp-accent);
+    box-shadow: none;
+  }
+
+  .table-of-contents__link:hover,
+  .table-of-contents__link--active,
+  .table-of-contents__link--active code {
+    color: var(--tp-accent-dark);
+  }
+
+  .footer {
+    border-top: 1px solid var(--tp-line);
+  }
+
+  .footer__title {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .footer--dark {
+    --ifm-footer-background-color: var(--tp-surface-alt);
+    --ifm-footer-color: var(--tp-muted);
+    --ifm-footer-link-color: var(--tp-fg);
+    --ifm-footer-link-hover-color: var(--tp-accent-dark);
+    --ifm-footer-title-color: var(--tp-accent);
+  }
+
+  .tabs__item {
+    border-radius: 0;
+  }
+
+  .tabs__item:hover {
+    background-color: transparent;
+  }
+
+  .alert--primary,
+  .alert--info {
+    --ifm-alert-background-color-highlight: #e8e0c8;
+  }
+
+  .alert--success {
+    --ifm-alert-background-color-highlight: #d7e8db;
+  }
+
+  .alert--warning {
+    --ifm-alert-background-color-highlight: #e7dfcc;
+  }
+
+  .alert--danger {
+    --ifm-alert-background-color-highlight: #f0d6d6;
+  }
+
+  [data-theme='dark'] .alert--primary,
+  [data-theme='dark'] .alert--info {
+    --ifm-alert-background-color-highlight: #403820;
+  }
+
+  [data-theme='dark'] .alert--success {
+    --ifm-alert-background-color-highlight: #1a2e20;
+  }
+
+  [data-theme='dark'] .alert--warning {
+    --ifm-alert-background-color-highlight: #332a18;
+  }
+
+  [data-theme='dark'] .alert--danger {
+    --ifm-alert-background-color-highlight: #3a2425;
+  }
+
+  /**
+   * Homepage hero (global classes, e.g. for src/pages/index.tsx).
+   * Sites customise via --tp-hero-* tokens in their own customCss.
+   */
+  .tp-hero {
+    background-color: var(--tp-hero-bg, var(--tp-surface-alt));
+    border-bottom: 1px solid var(--tp-hero-border-color, var(--tp-line));
+    padding: 5rem 0 3.5rem;
+  }
+
+  .tp-hero-eyebrow {
+    color: var(--tp-hero-eyebrow-color, var(--tp-accent));
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin: 0 0 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .tp-hero-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0 0 1.25rem;
+  }
+
+  .tp-hero-lede {
+    color: var(--tp-hero-lede-color, var(--tp-muted));
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 46rem;
+  }
+
+  @media screen and (max-width: 996px) {
+    .tp-hero {
+      padding: 2.5rem 0;
+    }
+  }
+
+  /* Bands: the navbar is two grid cells so the hero below it starts on a
+   * grid line; the footer keeps one-cell vertical padding. Content boxes
+   * stay natural — grid alignment is exact only for fixed-height geometry. */
+  .footer {
+    padding-block: var(--tp-grid-cell);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
