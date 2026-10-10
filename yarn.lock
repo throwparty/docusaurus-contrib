@@ -502,14 +502,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@throwparty/docusaurus-theme@workspace:packages/docusaurus-theme"
   dependencies:
-    "@docusaurus/module-type-aliases": "npm:3.10.2"
-    "@docusaurus/types": "npm:3.10.2"
-    "@types/node": "npm:^24.0.0"
-    "@types/react": "npm:^19.0.0"
-    "@types/react-dom": "npm:^19"
+    "@docusaurus/module-type-aliases": "catalog:"
+    "@docusaurus/types": "catalog:"
+    "@types/node": "catalog:"
+    "@types/react": "catalog:"
+    "@types/react-dom": "catalog:"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
-    typescript: "npm:~6.0.3"
+    typescript: "catalog:"
   peerDependencies:
     "@docusaurus/core": ^3.0.0
     react: ^18.0.0 || ^19.0.0
