@@ -32,7 +32,10 @@ jobs:
       - name: Setup Nix
         uses: $/.github/actions/setup-nix
         with:
-          cachix-cache: ${{ vars.CACHIX_CACHE }}
+          push-name: ${{ vars.CACHIX_PUSH_CACHE }}
+          pull-names: ${{ vars.CACHIX_PULL_CACHES }}
+          cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }} # zizmor: ignore[secrets-outside-env]
+          cachix-signing-key: ${{ secrets.CACHIX_SIGNING_KEY }} # zizmor: ignore[secrets-outside-env]
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       # Changesets spawns Node, npm and Yarn directly, so they have to be
