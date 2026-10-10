@@ -1,6 +1,10 @@
 # Build artifacts
 /packages/*/dist/
 
+# direnv
+/.direnv/
+/.envrc
+
 # node
 node_modules/
 
