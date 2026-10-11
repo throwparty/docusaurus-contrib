@@ -63,8 +63,8 @@ jobs:
         id: changesets
         uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # ratchet:changesets/action@v2.1.2
         with:
-          version: yarn run changeset version
-          publish: yarn run changeset publish
+          publish-script: yarn run changeset publish
+          version-script: yarn run changeset version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
