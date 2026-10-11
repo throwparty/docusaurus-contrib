@@ -56,6 +56,18 @@ jobs:
         with:
           registry-url: https://npm.pkg.github.com
 
+      - name: Configure Yarn
+        run: |
+          yarn config set --home "npmScopes.$SCOPE.npmRegistryServer" "$REGISTRY"
+          yarn config set --home "npmScopes.$SCOPE.npmAlwaysAuth" true
+          yarn config set --home "npmScopes.$SCOPE.npmAuthToken" "$TOKEN"
+          yarn config set --home "npmRegistries[\"$REGISTRY\"].npmAuthToken" "$TOKEN"
+          yarn config set --home "npmRegistries[\"$REGISTRY\"].npmAlwaysAuth" true
+        env:
+          REGISTRY: https://npm.pkg.github.com
+          SCOPE: throwparty
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Install dependencies
         run: yarn install --immutable
 
