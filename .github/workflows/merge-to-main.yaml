@@ -1,0 +1,23 @@
+name: Merge to main
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow_ref }}
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  release:
+    name: Release
+    permissions:
+      contents: write # Version commits, tags and GitHub releases
+      pull-requests: write # Version pull requests opened by Changesets
+      packages: write # Publishes to the GitHub Package Registry
+    uses: $/.github/workflows/release.yaml
+    secrets:
+      CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      CACHIX_SIGNING_KEY: ${{ secrets.CACHIX_SIGNING_KEY }}
