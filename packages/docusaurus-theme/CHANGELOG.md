@@ -1,5 +1,11 @@
 # @throwparty/docusaurus-theme
 
+## 0.2.0
+
+### Minor Changes
+
+- [`ec4bea4`](https://github.com/throwparty/docusaurus-contrib/commit/ec4bea466bd497ad99473242ec987827da278b20) Thanks [@LukeCarrier](https://github.com/LukeCarrier)! - Match the new www brand
+
 ## 0.1.1
 
 ### Patch Changes
