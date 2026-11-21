@@ -8,7 +8,7 @@
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version",
-    "release": "changeset publish"
+    "release": "yarn workspace @throwparty/docusaurus-theme build && changeset publish"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^1.0.1",

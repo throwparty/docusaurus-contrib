@@ -26,7 +26,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc --pretty false && node scripts/copy-assets.mjs",
     "clean": "rm -rf dist",
-    "prepublishOnly": "yarn build"
+    "prepack": "yarn build"
   },
   "peerDependencies": {
     "@docusaurus/core": "^3.0.0",
