@@ -138,6 +138,6 @@ yarn install
 yarn build   # tsc → dist/, copies non-TS assets
 ```
 
-Published tarballs build `dist/` via `prepublishOnly`, so there is nothing to
-commit. Portal consumers load `dist/` from the workspace, so run `yarn build`
-locally after source changes.
+Published tarballs build `dist/` via `prepack`, so there is nothing to commit.
+Portal consumers load `dist/` from the workspace, so run `yarn build` locally
+after source changes.
