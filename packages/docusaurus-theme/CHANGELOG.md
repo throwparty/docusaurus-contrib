@@ -1,5 +1,11 @@
 # @throwparty/docusaurus-theme
 
+## 0.2.1
+
+### Patch Changes
+
+- [#16](https://github.com/throwparty/docusaurus-contrib/pull/16) [`0769946`](https://github.com/throwparty/docusaurus-contrib/commit/07699466d32ce219ae78b48b09e246c3a9480432) Thanks [@LukeCarrier](https://github.com/LukeCarrier)! - Build `dist/` during `prepack` so published tarballs contain the compiled theme.
+
 ## 0.2.0
 
 ### Minor Changes
